@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Propalmac"— Producción sostenible de aceite de palma en el Meta, Colombia. Calidad RSPO, innovación y compromiso ambiental.">
+<title>Propalmac S.A.S</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark:     #0A1F14;
+    --primary:  #1B4332;
+    --secondary:#2D6A4F;
+    --light:    #52B788;
+    --gold:     #C9943A;
+    --gold-l:   #E8C17A;
+    --cream:    #F4EFE4;
+    --white:    #FAFAF7;
+    --text:     #1A1A18;
+    --muted:    #6B7B6E;
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp   { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:none; } }
+  @keyframes fadeIn   { from { opacity:0; } to { opacity:1; } }
+  @keyframes fadeLeft { from { opacity:0; transform:translateX(-40px); } to { opacity:1; transform:none; } }
+  @keyframes fadeRight{ from { opacity:0; transform:translateX(40px);  } to { opacity:1; transform:none; } }
+  @keyframes float    { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
+  @keyframes pulse    { 0%,100%{ opacity:.5; } 50%{ opacity:1; } }
+  @keyframes spin     { to { transform:rotate(360deg); } }
+  @keyframes shimmer  { 0%{ background-position:-400px 0; } 100%{ background-position:400px 0; } }
+  @keyframes barIn    { from{ width:0; } }
+  @keyframes drawLine { from{ transform:scaleX(0); } to{ transform:scaleX(1); } }
+
+  .reveal { opacity:0; transform:translateY(30px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .reveal.visible { opacity:1; transform:none; }
+  .reveal-left  { opacity:0; transform:translateX(-40px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .reveal-left.visible  { opacity:1; transform:none; }
+  .reveal-right { opacity:0; transform:translateX(40px);  transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .reveal-right.visible { opacity:1; transform:none; }
+
+  /* ── NAVBAR ── */
+  #navbar {
+    position: fixed; top:0; left:0; right:0; z-index:999;
+    padding: 0 48px;
+    transition: background .4s ease, border-color .4s ease, backdrop-filter .4s ease;
+  }
+  #navbar.solid {
+    background: rgba(10,31,20,.93);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(201,148,58,.18);
+  }
+  .nav-inner {
+    max-width:1240px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between; height:72px;
+  }
+  .nav-logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .nav-logo-icon {
+    width:38px; height:38px; border-radius:50%;
+    background: linear-gradient(135deg,var(--gold),var(--secondary));
+    display:flex; align-items:center; justify-content:center; font-size:18px;
+  }
+  .nav-logo-text .name  { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#fff; }
+  .nav-logo-text .sub   { font-size:9px; color:var(--gold-l); letter-spacing:.18em; text-transform:uppercase; margin-top:-2px; }
+  .nav-links { display:flex; align-items:center; gap:36px; }
+  .nav-links a {
+    color:rgba(255,255,255,.78); font-size:12px; letter-spacing:.07em;
+    text-transform:uppercase; font-weight:500; text-decoration:none;
+    transition:color .2s;
+  }
+  .nav-links a:hover { color:var(--gold-l); }
+  .nav-cta {
+    background:linear-gradient(135deg,var(--gold),#A67828);
+    color:#fff !important; padding:9px 22px !important;
+    border-radius:4px; font-weight:600 !important;
+    box-shadow:0 4px 16px rgba(201,148,58,.35);
+  }
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+  .hamburger span { display:block; width:24px; height:2px; background:#fff; border-radius:2px; transition:.3s; }
+  .mobile-menu {
+    display:none; flex-direction:column; gap:0;
+    background:rgba(10,31,20,.97); backdrop-filter:blur(12px);
+    padding:20px 0; border-top:1px solid rgba(255,255,255,.07);
+  }
+  .mobile-menu.open { display:flex; }
+  .mobile-menu a {
+    color:rgba(255,255,255,.8); padding:14px 48px; font-size:13px;
+    letter-spacing:.07em; text-transform:uppercase; font-weight:500;
+    text-decoration:none; border-bottom:1px solid rgba(255,255,255,.05);
+    transition:color .2s, background .2s;
+  }
+  .mobile-menu a:hover { color:var(--gold-l); background:rgba(255,255,255,.04); }
+
+  /* ── HERO ── */
+  #hero {
+    position:relative; min-height:100vh;
+    display:flex; align-items:center;
+    background: linear-gradient(160deg,#04120B 0%,#0A2218 45%,#122B1D 70%,#0A1F14 100%);
+    overflow:hidden; padding:0 48px;
+  }
+  .hero-grid {
+    position:absolute; inset:0; opacity:.04;
+    background-image:
+      repeating-linear-gradient(0deg,var(--light) 0,var(--light) 1px,transparent 1px,transparent 70px),
+      repeating-linear-gradient(90deg,var(--light) 0,var(--light) 1px,transparent 1px,transparent 70px);
+  }
+  .hero-orb {
+    position:absolute; border-radius:50%;
+    pointer-events:none;
+  }
+  .hero-orb-1 {
+    right:6%; top:10%; width:520px; height:520px;
+    background:radial-gradient(circle at 40% 40%,rgba(45,106,79,.3),rgba(10,32,18,.08) 70%);
+    border:1px solid rgba(201,148,58,.1);
+  }
+  .hero-orb-2 {
+    right:10%; top:15%; width:380px; height:380px;
+    border:1px solid rgba(201,148,58,.07);
+  }
+  .hero-orb-3 {
+    left:-120px; bottom:-100px; width:400px; height:400px;
+    background:radial-gradient(circle,rgba(27,67,50,.25),transparent 70%);
+  }
+  .hero-line-top {
+    position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  }
+  .hero-content { position:relative; max-width:1240px; margin:0 auto; width:100%; padding-top:72px; }
+  .hero-eyebrow {
+    display:flex; align-items:center; gap:12px; margin-bottom:28px;
+    animation:fadeUp .8s ease both;
+  }
+  .hero-eyebrow-line { width:40px; height:1px; background:var(--gold); }
+  .hero-eyebrow span { color:var(--gold-l); font-size:11px; letter-spacing:.22em; text-transform:uppercase; font-weight:600; }
+  .hero-title {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(3.2rem,6vw,5.8rem);
+    font-weight:700; color:#fff; line-height:1.08;
+    margin-bottom:28px;
+    animation:fadeUp .9s .1s ease both;
+  }
+  .hero-title .accent  { color:var(--gold-l); font-style:italic; }
+  .hero-title .outline { -webkit-text-stroke:1px rgba(255,255,255,.28); color:transparent; }
+  .hero-subtitle {
+    color:rgba(255,255,255,.6); font-size:18px; line-height:1.75;
+    max-width:540px; margin-bottom:44px;
+    animation:fadeUp 1s .2s ease both;
+  }
+  .hero-btns {
+    display:flex; gap:16px; flex-wrap:wrap;
+    animation:fadeUp 1s .3s ease both;
+  }
+  .btn-gold {
+    background:linear-gradient(135deg,var(--gold),#A67828);
+    color:#fff; padding:16px 40px; border-radius:4px;
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+    font-weight:700; text-decoration:none; display:inline-block;
+    box-shadow:0 8px 32px rgba(201,148,58,.35);
+    transition:transform .2s, box-shadow .2s;
+  }
+  .btn-gold:hover { transform:translateY(-2px); box-shadow:0 12px 40px rgba(201,148,58,.45); }
+  .btn-outline {
+    border:1px solid rgba(255,255,255,.28); color:#fff;
+    padding:16px 40px; border-radius:4px;
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+    font-weight:600; text-decoration:none; display:inline-block;
+    backdrop-filter:blur(8px);
+    transition:border-color .2s, background .2s;
+  }
+  .btn-outline:hover { border-color:rgba(201,148,58,.6); background:rgba(201,148,58,.08); }
+  .hero-stats {
+    position:absolute; right:0; bottom:80px;
+    display:flex; border-radius:8px; overflow:hidden;
+    border:1px solid rgba(201,148,58,.2);
+    animation:fadeLeft 1s .5s ease both;
+  }
+  .hero-stat {
+    padding:22px 28px; text-align:center;
+    background:rgba(10,31,20,.88); backdrop-filter:blur(16px);
+    border-right:1px solid rgba(201,148,58,.12);
+  }
+  .hero-stat:last-child { border-right:none; }
+  .hero-stat .val { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--gold-l); }
+  .hero-stat .lbl { font-size:10px; color:rgba(255,255,255,.45); letter-spacing:.12em; text-transform:uppercase; margin-top:4px; }
+  .hero-scroll {
+    position:absolute; bottom:40px; left:50%;
+    transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    opacity:.5;
+  }
+  .hero-scroll span { color:#fff; font-size:10px; letter-spacing:.2em; text-transform:uppercase; }
+  .scroll-line { width:1px; height:48px; background:linear-gradient(to bottom,var(--gold),transparent); animation:pulse 2s infinite; }
+
+  /* ── SECTION COMMON ── */
+  .section { padding:120px 48px; }
+  .section-inner { max-width:1240px; margin:0 auto; }
+  .eyebrow {
+    display:inline-flex; align-items:center; gap:12px; margin-bottom:20px;
+  }
+  .eyebrow-line { width:40px; height:1px; background:var(--gold); }
+  .eyebrow span { font-size:11px; letter-spacing:.22em; text-transform:uppercase; font-weight:700; }
+  .eyebrow-gold span { color:var(--gold); }
+  .eyebrow-gold-l span { color:var(--gold-l); }
+  .section-title {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2rem,3.2vw,3.2rem);
+    font-weight:700; line-height:1.15;
+  }
+  .section-title-dark { color:var(--dark); }
+  .section-title-white { color:#fff; }
+
+  /* ── ABOUT ── */
+  #about { background:var(--white); }
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+  .about-text p { color:var(--muted); font-size:17px; line-height:1.82; margin-bottom:20px; }
+  .about-cards {
+    display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:32px;
+  }
+  .about-card {
+    padding:20px; background:var(--cream); border-radius:8px;
+    border-left:3px solid var(--gold);
+  }
+  .about-card .card-title { font-weight:700; font-size:14px; color:var(--dark); margin-bottom:8px; }
+  .about-card .card-body  { color:var(--muted); font-size:13px; line-height:1.65; }
+  .about-visual {
+    position:relative;
+  }
+  .about-img {
+    aspect-ratio:4/5; border-radius:12px;
+    background:linear-gradient(160deg,var(--secondary) 0%,var(--dark) 100%);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:18px; overflow:hidden; position:relative;
+  }
+  .about-img-emoji { font-size:80px; }
+  .about-img-quote {
+    font-family:'Playfair Display',serif; font-style:italic;
+    font-size:20px; color:rgba(255,255,255,.7);
+    text-align:center; padding:0 32px; line-height:1.5;
+  }
+  .about-img-divider { width:60px; height:1px; background:var(--gold); }
+  .about-img-attr { color:var(--gold-l); font-size:13px; letter-spacing:.1em; }
+  .about-orb {
+    position:absolute; top:-20px; right:-20px;
+    width:120px; height:120px; border-radius:50%;
+    background:radial-gradient(circle,rgba(201,148,58,.25),transparent 70%);
+    border:1px solid rgba(201,148,58,.2);
+    pointer-events:none;
+  }
+  .about-badge {
+    position:absolute; bottom:-16px; left:-16px;
+    padding:18px 26px;
+    background:var(--dark); border-radius:8px;
+    border:1px solid rgba(201,148,58,.3);
+  }
+  .about-badge .year { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:var(--gold-l); }
+  .about-badge .year-label { color:rgba(255,255,255,.55); font-size:11px; letter-spacing:.12em; text-transform:uppercase; }
+
+  /* ── STATS ── */
+  #stats {
+    background:linear-gradient(135deg,#04120B 0%,#0E2318 100%);
+    padding:90px 48px; position:relative; overflow:hidden;
+  }
+  #stats::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:1px;
+    background:linear-gradient(90deg,transparent,rgba(201,148,58,.5),transparent);
+  }
+  #stats::after {
+    content:''; position:absolute; bottom:0; left:0; right:0; height:1px;
+    background:linear-gradient(90deg,transparent,rgba(201,148,58,.3),transparent);
+  }
+  .stats-inner { max-width:1240px; margin:0 auto; }
+  .stats-header { text-align:center; margin-bottom:60px; }
+  .stats-header .eyebrow { justify-content:center; }
+  .stats-grid {
+    display:grid; grid-template-columns:repeat(6,1fr);
+    background:rgba(201,148,58,.08); border:1px solid rgba(201,148,58,.12);
+    border-radius:12px; overflow:hidden; gap:1px;
+  }
+  .stat-cell {
+    background:rgba(10,31,20,.7); text-align:center; padding:44px 20px;
+    transition:background .3s;
+  }
+  .stat-cell:hover { background:rgba(27,67,50,.5); }
+  .stat-val {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2.2rem,3.5vw,3.6rem);
+    font-weight:700; color:var(--gold-l); line-height:1;
+    display:block;
+  }
+  .stat-lbl {
+    display:block; color:rgba(255,255,255,.48); font-size:11px;
+    letter-spacing:.14em; text-transform:uppercase; margin-top:12px;
+  }
+
+  /* ── PROCESS ── */
+  #process { background:var(--cream); }
+  .process-header { text-align:center; margin-bottom:80px; }
+  .process-header .eyebrow { justify-content:center; }
+  .process-header p { color:var(--muted); font-size:17px; max-width:520px; margin:16px auto 0; }
+  .process-timeline { position:relative; }
+  .process-line {
+    position:absolute; top:52px; left:8%; right:8%; height:2px;
+    background:linear-gradient(90deg,rgba(201,148,58,.15),rgba(201,148,58,.7),rgba(201,148,58,.15));
+    transform-origin:left; animation:drawLine 1.5s ease both;
+  }
+  .process-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; }
+  .process-step { text-align:center; }
+  .process-icon-wrap {
+    position:relative; width:82px; height:82px; margin:0 auto 26px;
+  }
+  .process-icon {
+    width:82px; height:82px; border-radius:50%;
+    background:linear-gradient(135deg,var(--secondary),var(--dark));
+    display:flex; align-items:center; justify-content:center;
+    font-size:30px; border:3px solid var(--gold);
+    box-shadow:0 8px 28px rgba(27,67,50,.35);
+    transition:transform .3s, box-shadow .3s;
+  }
+  .process-icon:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(27,67,50,.5); }
+  .process-num {
+    position:absolute; bottom:-4px; right:-4px;
+    width:22px; height:22px; border-radius:50%;
+    background:var(--gold); color:#fff;
+    font-size:11px; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .process-step h3 { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:var(--dark); margin-bottom:10px; }
+  .process-step p  { color:var(--muted); font-size:13px; line-height:1.65; }
+
+  /* ── SUSTAINABILITY ── */
+  #sustainability { background:var(--dark); padding:120px 48px; position:relative; overflow:hidden; }
+  .sust-bg-grid {
+    position:absolute; inset:0; opacity:.03;
+    background-image:
+      repeating-linear-gradient(0deg,var(--light) 0,var(--light) 1px,transparent 1px,transparent 64px),
+      repeating-linear-gradient(90deg,var(--light) 0,var(--light) 1px,transparent 1px,transparent 64px);
+    pointer-events:none;
+  }
+  .sust-inner { max-width:1240px; margin:0 auto; position:relative; }
+  .sust-top { display:grid; grid-template-columns:1fr 1fr; gap:80px; margin-bottom:72px; align-items:start; }
+  .sust-text .eyebrow { margin-bottom:20px; }
+  .sust-text p { color:rgba(255,255,255,.6); font-size:17px; line-height:1.82; }
+  .sust-bars { display:flex; flex-direction:column; gap:8px; padding-top:16px; }
+  .bar-row { margin-bottom:14px; }
+  .bar-label { display:flex; justify-content:space-between; margin-bottom:7px; }
+  .bar-label span:first-child { color:rgba(255,255,255,.7); font-size:13px; }
+  .bar-label span:last-child  { color:var(--gold-l); font-size:13px; font-weight:600; }
+  .bar-track { height:6px; background:rgba(255,255,255,.1); border-radius:3px; overflow:hidden; }
+  .bar-fill {
+    height:100%; border-radius:3px;
+    background:linear-gradient(90deg,var(--secondary),var(--gold));
+    width:0; transition:width 1.6s cubic-bezier(.16,1,.3,1);
+  }
+  .sust-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .sust-card {
+    padding:30px 26px; border-radius:10px;
+    background:rgba(255,255,255,.04); border:1px solid rgba(201,148,58,.14);
+    transition:background .3s, border-color .3s, transform .3s;
+    cursor:default;
+  }
+  .sust-card:hover { background:rgba(45,106,79,.2); border-color:rgba(201,148,58,.4); transform:translateY(-4px); }
+  .sust-card .s-icon { font-size:34px; margin-bottom:18px; display:block; }
+  .sust-card h3 { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:#fff; margin-bottom:10px; }
+  .sust-card p  { color:rgba(255,255,255,.52); font-size:13px; line-height:1.72; }
+
+  /* ── PRODUCTS ── */
+  #products { background:var(--white); }
+  .products-header { text-align:center; margin-bottom:72px; }
+  .products-header .eyebrow { justify-content:center; }
+  .products-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .product-card {
+    border-radius:12px; overflow:hidden;
+    border:1px solid rgba(27,67,50,.1);
+    transition:transform .3s, box-shadow .3s;
+    cursor:default;
+  }
+  .product-card:hover { transform:translateY(-6px); box-shadow:0 24px 60px rgba(27,67,50,.15); }
+  .product-top {
+    padding:40px 28px 28px;
+    background:linear-gradient(160deg,var(--cream),#fff);
+  }
+  .product-head { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:22px; }
+  .product-icon { font-size:46px; }
+  .product-tag {
+    background:rgba(27,67,50,.12); color:var(--secondary);
+    font-size:11px; padding:4px 12px; border-radius:20px;
+    font-weight:700; letter-spacing:.08em;
+  }
+  .product-card h3 { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--dark); margin-bottom:10px; }
+  .product-card p  { color:var(--muted); font-size:14px; line-height:1.72; }
+  .product-footer {
+    padding:14px 28px; background:var(--cream);
+    border-top:1px solid rgba(27,67,50,.08);
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .product-footer span:first-child { color:var(--secondary); font-size:13px; font-weight:600; }
+  .product-footer span:last-child  { color:var(--gold); font-size:20px; }
+
+  /* ── GALLERY ── */
+  #gallery { background:var(--cream); padding:120px 48px; }
+  .gallery-header { text-align:center; margin-bottom:60px; }
+  .gallery-header .eyebrow { justify-content:center; }
+  .gallery-grid {
+    max-width:1240px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(3,1fr);
+    grid-auto-rows:200px; gap:14px;
+  }
+  .gallery-item {
+    border-radius:10px; overflow:hidden; position:relative;
+    background:linear-gradient(135deg,var(--secondary),var(--dark));
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    cursor:pointer;
+  }
+  .gallery-item.span2 { grid-column:span 2; }
+  .gallery-emoji { font-size:56px; pointer-events:none; transition:transform .4s ease; }
+  .gallery-item:hover .gallery-emoji { transform:scale(1.15); }
+  .gallery-overlay {
+    position:absolute; inset:0; background:rgba(201,148,58,.18);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; transition:opacity .35s ease; padding:20px;
+  }
+  .gallery-item:hover .gallery-overlay { opacity:1; }
+  .gallery-overlay span {
+    font-family:'Playfair Display',serif; font-size:17px; font-weight:700;
+    color:#fff; text-align:center;
+    text-shadow:0 2px 8px rgba(0,0,0,.6);
+  }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background:var(--white); padding:120px 48px; }
+  .testi-header { text-align:center; margin-bottom:64px; }
+  .testi-header .eyebrow { justify-content:center; }
+  .testi-grid { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .testi-card {
+    padding:32px 28px; border-radius:12px;
+    background:var(--cream); border:1px solid rgba(27,67,50,.1);
+    position:relative; transition:transform .3s, box-shadow .3s;
+  }
+  .testi-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(27,67,50,.12); }
+  .testi-quote { font-size:48px; line-height:1; color:var(--gold); font-family:'Playfair Display',serif; position:absolute; top:18px; left:24px; }
+  .testi-text  { color:var(--muted); font-size:15px; line-height:1.78; margin:40px 0 24px; font-style:italic; }
+  .testi-author { display:flex; align-items:center; gap:14px; }
+  .testi-avatar {
+    width:44px; height:44px; border-radius:50%;
+    background:linear-gradient(135deg,var(--secondary),var(--dark));
+    display:flex; align-items:center; justify-content:center;
+    font-size:18px; flex-shrink:0;
+  }
+  .testi-name { font-weight:700; font-size:14px; color:var(--dark); }
+  .testi-role { font-size:12px; color:var(--muted); margin-top:2px; }
+  .testi-stars { color:var(--gold); font-size:13px; margin-top:4px; }
+
+  /* ── CONTACT ── */
+  #contact { background:var(--dark); padding:120px 48px; }
+  .contact-grid { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; }
+  .contact-info p { color:rgba(255,255,255,.58); font-size:17px; line-height:1.82; margin:18px 0 48px; }
+  .contact-item { display:flex; gap:16px; margin-bottom:22px; align-items:flex-start; }
+  .contact-icon {
+    width:42px; height:42px; border-radius:8px;
+    background:rgba(201,148,58,.14);
+    display:flex; align-items:center; justify-content:center;
+    font-size:18px; flex-shrink:0;
+  }
+  .contact-item-text { color:rgba(255,255,255,.68); font-size:15px; line-height:1.6; padding-top:8px; }
+  .contact-form-wrap {
+    background:rgba(255,255,255,.04); border:1px solid rgba(201,148,58,.2);
+    border-radius:14px; padding:44px 40px;
+  }
+  .form-group { margin-bottom:18px; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px; }
+  .form-control {
+    width:100%; padding:14px 18px;
+    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12);
+    border-radius:7px; color:#fff; font-size:15px; font-family:'DM Sans',sans-serif;
+    outline:none; transition:border-color .25s, background .25s;
+  }
+  .form-control::placeholder { color:rgba(255,255,255,.38); }
+  .form-control:focus { border-color:rgba(201,148,58,.5); background:rgba(255,255,255,.09); }
+  select.form-control option { background:var(--dark); color:#fff; }
+  textarea.form-control { resize:vertical; min-height:130px; }
+  .btn-submit {
+    width:100%; padding:17px; cursor:pointer; border:none; border-radius:7px;
+    background:linear-gradient(135deg,var(--gold),#A67828);
+    color:#fff; font-size:13px; font-weight:700;
+    letter-spacing:.1em; text-transform:uppercase;
+    font-family:'DM Sans',sans-serif;
+    box-shadow:0 8px 28px rgba(201,148,58,.35);
+    transition:transform .2s, box-shadow .2s;
+  }
+  .btn-submit:hover { transform:translateY(-2px); box-shadow:0 14px 36px rgba(201,148,58,.45); }
+
+  /* ── FOOTER ── */
+  footer {
+    background:#040D07; padding:72px 48px 36px;
+    border-top:1px solid rgba(201,148,58,.12);
+  }
+  .footer-inner { max-width:1240px; margin:0 auto; }
+  .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; margin-bottom:60px; }
+  .footer-brand { display:flex; flex-direction:column; }
+  .footer-logo { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+  .footer-logo-icon {
+    width:36px; height:36px; border-radius:50%;
+    background:linear-gradient(135deg,var(--gold),var(--secondary));
+    display:flex; align-items:center; justify-content:center; font-size:16px;
+  }
+  .footer-logo-text .name { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:#fff; }
+  .footer-logo-text .sub  { font-size:9px; color:var(--gold-l); letter-spacing:.18em; text-transform:uppercase; }
+  .footer-brand p { color:rgba(255,255,255,.38); font-size:14px; line-height:1.78; max-width:260px; }
+  .footer-col h4 { color:var(--gold-l); font-size:11px; letter-spacing:.18em; text-transform:uppercase; font-weight:700; margin-bottom:20px; }
+  .footer-col a  { display:block; color:rgba(255,255,255,.38); font-size:14px; margin-bottom:11px; text-decoration:none; transition:color .2s; }
+  .footer-col a:hover { color:rgba(255,255,255,.75); }
+  .footer-bottom {
+    border-top:1px solid rgba(255,255,255,.06); padding-top:28px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .footer-copy { color:rgba(255,255,255,.28); font-size:13px; }
+  .social-row { display:flex; gap:12px; }
+  .social-btn {
+    width:36px; height:36px; border-radius:50%;
+    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.08);
+    display:flex; align-items:center; justify-content:center;
+    font-size:15px; cursor:pointer; text-decoration:none;
+    transition:background .2s, border-color .2s;
+  }
+  .social-btn:hover { background:rgba(201,148,58,.2); border-color:rgba(201,148,58,.4); }
+
+  /* ── WHATSAPP FLOAT ── */
+  .wa-float {
+    position:fixed; bottom:34px; right:34px; z-index:998;
+    width:58px; height:58px; border-radius:50%;
+    background:linear-gradient(135deg,#25D366,#128C7E);
+    display:flex; align-items:center; justify-content:center;
+    font-size:28px; text-decoration:none;
+    box-shadow:0 8px 28px rgba(37,211,102,.45);
+    animation:float 3.5s ease-in-out infinite;
+    transition:transform .2s;
+  }
+  .wa-float:hover { transform:scale(1.1) translateY(-3px); }
+  .wa-tooltip {
+    position:absolute; right:70px; top:50%; transform:translateY(-50%);
+    background:var(--dark); color:#fff; font-size:13px; white-space:nowrap;
+    padding:7px 14px; border-radius:6px; border:1px solid rgba(201,148,58,.3);
+    opacity:0; pointer-events:none; transition:opacity .2s;
+  }
+  .wa-float:hover .wa-tooltip { opacity:1; }
+
+  /* ── TOAST ── */
+  .toast {
+    position:fixed; bottom:110px; right:34px; z-index:1000;
+    background:var(--secondary); color:#fff; font-size:14px;
+    padding:14px 22px; border-radius:8px; box-shadow:0 8px 28px rgba(0,0,0,.3);
+    transform:translateY(20px); opacity:0;
+    transition:all .4s cubic-bezier(.16,1,.3,1);
+    pointer-events:none;
+  }
+  .toast.show { transform:none; opacity:1; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width:1100px) {
+    .stats-grid { grid-template-columns:repeat(3,1fr); }
+    .process-grid { grid-template-columns:repeat(3,1fr); gap:32px; }
+    .process-line { display:none; }
+    .hero-stats { display:none; }
+  }
+  @media (max-width:900px) {
+    .section, #sustainability, #contact, #gallery, #testimonials { padding:80px 28px; }
+    #stats { padding:72px 28px; }
+    .about-grid, .sust-top, .contact-grid { grid-template-columns:1fr; gap:48px; }
+    .products-grid, .sust-cards, .testi-grid { grid-template-columns:1fr 1fr; }
+    .footer-grid { grid-template-columns:1fr 1fr; }
+    .gallery-grid { grid-template-columns:1fr 1fr; }
+    .gallery-item.span2 { grid-column:span 1; }
+    .hero-title { font-size:clamp(2.8rem,7vw,4rem); }
+    .form-row { grid-template-columns:1fr; }
+  }
+  @media (max-width:640px) {
+    #navbar { padding:0 20px; }
+    #hero    { padding:0 20px; }
+    .nav-links { display:none; }
+    .hamburger { display:flex; }
+    .products-grid, .sust-cards, .testi-grid { grid-template-columns:1fr; }
+    .stats-grid { grid-template-columns:repeat(2,1fr); }
+    .about-cards { grid-template-columns:1fr; }
+    .footer-grid { grid-template-columns:1fr; }
+    .footer-bottom { flex-direction:column; gap:16px; text-align:center; }
+    .contact-form-wrap { padding:28px 22px; }
+    .hero-btns { flex-direction:column; }
+    .btn-gold, .btn-outline { text-align:center; }
+    .gallery-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<header id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <div class="nav-logo-icon">🌿</div>
+      <div class="nav-logo-text">
+        <div class="name">Propalmac</div>
+        <div class="sub">Cosechando Futuro</div>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="#about">Nosotros</a>
+      <a href="#process">Proceso</a>
+      <a href="#sustainability">Sostenibilidad</a>
+      <a href="#products">Productos</a>
+      <a href="#gallery">Galería</a>
+      <a href="#contact" class="nav-cta">Cotizar</a>
+    </nav>
+   
+    <div class="hamburger" onclick="toggleMenu()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#about"         onclick="toggleMenu()">Nosotros</a>
+    <a href="#process"       onclick="toggleMenu()">Proceso</a>
+    <a href="#sustainability" onclick="toggleMenu()">Sostenibilidad</a>
+    <a href="#products"      onclick="toggleMenu()">Productos</a>
+    <a href="#gallery"       onclick="toggleMenu()">Galería</a>
+    <a href="#contact"       onclick="toggleMenu()">Contacto</a>
+  </nav>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero-line-top"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>Producción Sostenible · Maní-Casanare, Colombia</span>
+    </div>
+    <h1 class="hero-title">
+      Cultivamos el<br>
+      <span class="accent">futuro</span>
+      <span class="outline"> sostenible</span>
+    </h1>
+    <p class="hero-subtitle">
+      Líderes en producción de aceite de palma de alta calidad con estándares ambientales internacionales y compromiso social con nuestras comunidades del Llano.
+    </p>
+    <div class="hero-btns">
+      <a href="#about"   class="btn-gold">Conocer más</a>
+      <a href="#process" class="btn-outline">Nuestro Proceso</a>
+    </div>
+
+    <!-- Floating stats -->
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="val">200+</span><span class="lbl">Hectáreas</span></div>
+      <div class="hero-stat"><span class="val">98%</span><span class="lbl">Calidad RSPO</span></div>
+      <div class="hero-stat"><span class="val">40</span><span class="lbl">Empleos</span></div>
+      <div class="hero-stat"><span class="val">15</span><span class="lbl">Años</span></div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about" class="section">
+  <div class="section-inner about-grid">
+    <div class="reveal-left">
+      <div class="eyebrow eyebrow-gold">
+        <div class="eyebrow-line"></div><span>Quiénes Somos</span>
+      </div>
+      <h2 class="section-title section-title-dark" style="margin-bottom:24px;">
+        Más de una década cultivando excelencia palmera
+      </h2>
+      <div class="about-text">
+        <p>Fundada en la vereda el socorro, municipio de Maní-Casanare, Propalmac, nació de la visión de producir palma de aceite de una manera sostenible, social, ambiental y económica.</p>
+        <p>Hoy somos referentes nacionales en producción sostenible de aceite de palma, palmiste y derivados, integrando toda la cadena productiva bajo los más altos estándares de calidad internacional.</p>
+      </div>
+      <div class="about-cards">
+        <div class="about-card">
+          <div class="card-title">🏆 Misión</div>
+          <div class="card-body">Producir aceite de palma de clase mundial con impacto positivo en el entorno social y ambiental.</div>
+        </div>
+        <div class="about-card">
+          <div class="card-title">🔭 Visión</div>
+          <div class="card-body">Ser la empresa palmera más sostenible e innovadora de Colombia para 2030.</div>
+        </div>
+        <div class="about-card">
+          <div class="card-title">🌿 Valores</div>
+          <div class="card-body">Integridad, sostenibilidad, innovación, responsabilidad y bienestar comunitario.</div>
+        </div>
+        <div class="about-card">
+          <div class="card-title">🤝 Compromiso</div>
+          <div class="card-body">Responsabilidad social con todos nuetros colaboradores.</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual reveal-right">
+      <div class="about-img">
+        <div class="about-img-emoji">🌴</div>
+        <p class="about-img-quote">"La tierra es nuestra herencia;<br>la sostenibilidad, nuestro legado."</p>
+        <div class="about-img-divider"></div>
+        <span class="about-img-attr">— Fundador, 2010</span>
+      </div>
+      <div class="about-orb"></div>
+      <div class="about-badge">
+        <div class="year">2010</div>
+        <div class="year-label">Año de fundación</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section id="stats">
+  <div class="stats-inner">
+    <div class="stats-header reveal">
+      <div class="eyebrow eyebrow-gold-l">
+        <div class="eyebrow-line"></div><span>Números que hablan</span><div class="eyebrow-line"></div>
+      </div>
+      <h2 class="section-title section-title-white" style="margin-top:10px;">Impacto real en cifras</h2>
+    </div>
+    <div class="stats-grid reveal">
+      <div class="stat-cell"><span class="stat-val" data-target="200" data-suffix="+">0</span><span class="stat-lbl">Hectáreas Cultivadas</span></div>
+      <div class="stat-cell"><span class="stat-val" data-target="3.800" data-suffix=>0</span><span class="stat-lbl">Toneladas / Año</span></div>
+      <div class="stat-cell"><span class="stat-val" data-target="40"   data-suffix=>0</span><span class="stat-lbl">Empleos Directos</span></div>
+      <div class="stat-cell"><span class="stat-val" data-target="15"    data-suffix="">0</span><span class="stat-lbl">Años de Experiencia</span></div>
+      <div class="stat-cell"><span class="stat-val" data-target="98"    data-suffix="%">0</span><span class="stat-lbl">Calidad Certificada</span></div>
+      <div class="stat-cell"><span class="stat-val" data-target="12"   data-suffix="+">0</span><span class="stat-lbl">Productores Aliados</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROCESS ═══ -->
+<section id="process" class="section">
+  <div class="section-inner">
+    <div class="process-header reveal">
+      <div class="eyebrow eyebrow-gold"><div class="eyebrow-line"></div><span>Cadena de Valor</span><div class="eyebrow-line"></div></div>
+      <h2 class="section-title section-title-dark" style="margin-top:10px;">Proceso Productivo</h2>
+      <p>De la semilla al aceite, controlamos cada etapa con precisión y responsabilidad ambiental.</p>
+    </div>
+    <div class="process-timeline">
+      <div class="process-line"></div>
+      <div class="process-grid">
+        <div class="process-step reveal" style="transition-delay:.0s">
+          <div class="process-icon-wrap">
+            <div class="process-icon">🌱</div>
+            <div class="process-num">1</div>
+          </div>
+          <h3>Siembra</h3>
+          <p>Selección de semillas certificadas y preparación de almácigos con monitoreo genético avanzado.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:.1s">
+          <div class="process-icon-wrap">
+            <div class="process-icon">🌴</div>
+            <div class="process-num">2</div>
+          </div>
+          <h3>Cultivo</h3>
+          <p>Nutrición precisa, control integrado de plagas y monitoreo fitosanitario continuo en campo.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:.2s">
+          <div class="process-icon-wrap">
+            <div class="process-icon">🔪</div>
+            <div class="process-num">3</div>
+          </div>
+          <h3>Cosecha</h3>
+          <p>Corte técnico del racimo en punto óptimo de madurez con maquinaria de última generación.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:.3s">
+          <div class="process-icon-wrap">
+            <div class="process-icon">🚛</div>
+            <div class="process-num">4</div>
+          </div>
+          <h3>Transporte</h3>
+          <p>Logística eficiente a planta extractora dentro de las primeras horas post-cosecha para preservar calidad.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:.4s">
+          <div class="process-icon-wrap">
+            <div class="process-icon">⚙️</div>
+            <div class="process-num">5</div>
+          </div>
+          <h3>Extracción</h3>
+          <p>Procesamiento industrial en planta propia con tecnología de alta eficiencia y control de calidad.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:.5s">
+          <div class="process-icon-wrap">
+            <div class="process-icon">📦</div>
+            <div class="process-num">6</div>
+          </div>
+          <h3>Comercialización</h3>
+          <p>Distribución nacional e internacional con trazabilidad certificada bajo estándares RSPO.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SUSTAINABILITY ═══ -->
+<section id="sustainability">
+  <div class="sust-bg-grid"></div>
+  <div class="sust-inner">
+    <div class="sust-top">
+      <div class="reveal-left">
+        <div class="eyebrow eyebrow-gold-l" style="margin-bottom:20px;">
+          <div class="eyebrow-line"></div><span>Compromiso Ambiental</span>
+        </div>
+        <h2 class="section-title section-title-white" style="margin-bottom:24px;">
+          Sostenibilidad no es una opción,<br>es nuestra <em style="color:var(--gold-l);">razón de ser</em>
+        </h2>
+        <p class="sust-text">Creemos que la agroindustria moderna puede y debe ser parte de la solución ambiental. Cada decisión productiva en Palmera Verde está guiada por su impacto en el ecosistema, las comunidades y las generaciones futuras del Llano colombiano.</p>
+      </div>
+      <div class="sust-bars reveal-right">
+        <div class="bar-row">
+          <div class="bar-label"><span>Reducción de CO₂</span><span>78%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="78"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Arbolización anual</span><span>92%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="60"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Subproductos Aprovechados</span><span>100%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="100"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Residuos Valorizados</span><span>80%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="92"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="sust-cards">
+      <div class="sust-card reveal" style="transition-delay:.0s">
+      
+        <span class="s-icon">🌳</span>
+        <h3>Biodiversidad</h3>
+        <p>Plantación de 1.000 arboles anuales, para mitigar el impacto ambiental.</p>
+      </div>
+      <div class="sust-card reveal" style="transition-delay:.4s">
+        <span class="s-icon">👨‍👩‍👧‍👦</span>
+        <h3>Impacto Social</h3>
+        <p>Programas de vivienda, educación y salud para más de 300 personas en comunidades palmeras de Maní-Casanare.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRODUCTS ═══ -->
+<section id="products" class="section">
+  <div class="section-inner">
+    <div class="products-header reveal">
+      <div class="eyebrow eyebrow-gold"><div class="eyebrow-line"></div><span>Portafolio</span><div class="eyebrow-line"></div></div>
+      <h2 class="section-title section-title-dark" style="margin-top:10px;">Nuestros Productos</h2>
+    </div>
+    <div class="products-grid">
+      <div class="product-card reveal" style="transition-delay:.0s">
+        <div class="product-top">
+          <div class="product-head">
+            <span class="product-icon">🛢️</span>
+            <span class="product-tag">CPO</span>
+          </div>
+          <h3>Aceite Crudo de Palma</h3>
+          <p>Aceite de alta calidad con índice de acidez controlado, libre de contaminantes. Destino: industria alimentaria y oleoquímica nacional e internacional.</p>
+        </div>
+        <div class="product-footer">
+          <span>Ver especificaciones</span><span>→</span>
+        </div>
+      </div>
+      <div class="product-card reveal" style="transition-delay:.1s">
+        <div class="product-top">
+          <div class="product-head">
+            <span class="product-icon">🥥</span>
+            <span class="product-tag">PKO</span>
+          </div>
+          <h3>Aceite de Palmiste</h3>
+          <p>Extraído del endospermo del fruto. Altamente cotizado en industria cosmética, jabonería, margarinas y confitería premium.</p>
+        </div>
+        <div class="product-footer">
+          <span>Ver especificaciones</span><span>→</span>
+        </div>
+      </div>
+      <div class="product-card reveal" style="transition-delay:.2s">
+        <div class="product-top">
+          <div class="product-head">
+            <span class="product-icon">🌿</span>
+            <span class="product-tag">Biomasa</span>
+          </div>
+          <h3>Fruto de palma</h3>
+          <p>Biofertilizante de alta calidad producido con racimos vacíos y efluentes tratados. Mejora estructura del suelo y reduce agroquímicos.</p>
+        </div>
+        <div class="product-footer">
+          <span>Ver especificaciones</span><span>→</span>
+        </div>
+      </div>
+      <div class="product-card reveal" style="transition-delay:.3s">
+        <div class="product-top">
+          <div class="product-head">
+            <span class="product-icon">⚡</span>
+            <span class="product-tag">Renovable</span>
+          </div>
+          <h3>Torta de Palmiste</h3>
+          <p>Subproducto rico en proteína para alimentación animal. Exportamos a mercados europeos y latinoamericanos con certificación de calidad.</p>
+        </div>
+        <div class="product-footer">
+          <span>Ver especificaciones</span><span>→</span>
+        </div>
+      </div>
+      <div class="product-card reveal" style="transition-delay:.5s">
+        <div class="product-top">
+          <div class="product-head">
+            <span class="product-icon">🤝</span>
+            <span class="product-tag">B2B</span>
+          </div>
+          <h3>Servicios Agrícolas</h3>
+          <p>Asesoría técnica especializada, polinización asistida, gestión fitosanitaria y acompañamiento integral para palmicultores aliados.</p>
+        </div>
+        <div class="product-footer">
+          <span>Ver especificaciones</span><span>→</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALLERY ═══ -->
+<section id="gallery">
+  <div class="gallery-header reveal">
+    <div class="eyebrow eyebrow-gold" style="justify-content:center;">
+      <div class="eyebrow-line"></div><span>Galería</span><div class="eyebrow-line"></div>
+    </div>
+    <h2 class="section-title section-title-dark" style="margin-top:10px;">El alma de nuestra finca</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item span2 reveal">
+      <div class="gallery-emoji">🌴</div>
+      <div class="gallery-overlay"><span>El palmar — Finca El Progreso</span></div>
+    </div>
+    <div class="gallery-item reveal" style="transition-delay:.1s">
+      <div class="gallery-emoji">🏭</div>
+      <div class="gallery-overlay"><span>Plantas aliadas</span></div>
+    </div>
+    <div class="gallery-item reveal" style="transition-delay:.2s">
+      <div class="gallery-emoji">🚜</div>
+      <div class="gallery-overlay"><span>Maquinaria Agrícola Especializada</span></div>
+    </div>
+    <div class="gallery-item reveal" style="transition-delay:.3s">
+      <div class="gallery-emoji">👷</div>
+      <div class="gallery-overlay"><span>Nuestro Equipo Humano</span></div>
+    </div>
+    <div class="gallery-item span2 reveal" style="transition-delay:.4s">
+      <div class="gallery-emoji">🛸</div>
+      <div class="gallery-overlay"><span>Vista Aérea — 200 Hectáreas</span></div>
+    </div>
+    <div class="gallery-item reveal" style="transition-delay:.1s">
+      <div class="gallery-emoji">🌿</div>
+      <div class="gallery-overlay"><span>Cosecha Técnica de Racimos</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="testimonials">
+  <div class="testi-header reveal">
+    <div class="eyebrow eyebrow-gold"><div class="eyebrow-line"></div><span>Aliados Estratégicos</span><div class="eyebrow-line"></div></div>
+    <h2 class="section-title section-title-dark" style="margin-top:10px;">Lo que dicen nuestros socios</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal" style="transition-delay:.0s">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">Llevamos cinco años comprando aceite a la palmera Propalmac. La consistencia en calidad y la trazabilidad RSPO nos abre puertas en mercados europeos que antes eran inalcanzables.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">👨‍💼</div>
+        <div>
+          <div class="testi-name">Carlos Mendoza</div>
+          <div class="testi-role">Director Comercial — Refinería del Llano</div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal" style="transition-delay:.15s">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">El programa de productores aliados transformó nuestra finca. La asistencia técnica y la garantía de compra nos dio la estabilidad que necesitábamos para crecer con confianza.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">👩‍🌾</div>
+        <div>
+          <div class="testi-name">Ana Lucía Vargas</div>
+          <div class="testi-role">Palmicultora Aliada — Acacías, Meta</div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal" style="transition-delay:.3s">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">Popalmac es un referente de cómo hacer agroindustria responsable en Colombia. Sus métricas ambientales son genuinas y verificables, algo escaso en el sector.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">🌍</div>
+        <div>
+          <div class="testi-name">Dr. Ricardo Fonseca</div>
+          <div class="testi-role">Auditor RSPO — Bogotá</div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info reveal-left">
+      <div class="eyebrow eyebrow-gold-l" style="margin-bottom:20px;">
+        <div class="eyebrow-line"></div><span>Contáctenos</span>
+      </div>
+      <h2 class="section-title section-title-white">Hablemos<br>de negocios</h2>
+      <p>Estamos ubicados en la vereda el socorro municipio de Maní-Casanare colombia, .</p>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-item-text">Km 27, vían la poyata<br>Maní-Casanare, Colombia</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div class="contact-item-text">+57 3208711026 <br>+57 3126608360</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-item-text">Propalmac.SAS@gmail.com 
+          <div class="contact-item">
+        <div class="contact-icon">⏰</div>
+        <div class="contact-item-text">Lunes a Sábado: 24/7.</div>
+      </div>
+
+    <div class="reveal-right">
+      <div class="contact-form-wrap">
+        <div class="form-row">
+          <input type="text" class="form-control" placeholder="Nombre completo" required>
+          <input type="email" class="form-control" placeholder="Correo electrónico" required>
+        </div>
+        <div class="form-group">
+          <input type="tel" class="form-control" placeholder="Teléfono / WhatsApp">
+        </div>
+        <div class="form-group">
+          <select class="form-control">
+            <option value="" disabled selected>Tipo de consulta</option>
+            <option>Compra de aceite CPO</option>
+            <option>Alianza comercial</option>
+            <option>Servicios agrícolas</option>
+            <option>Exportación</option>
+            <option>Empleo</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" placeholder="Cuéntenos sobre su proyecto o consulta..."></textarea>
+        </div>
+        <button type="button" class="btn-submit" onclick="submitForm()">
+          Enviar Mensaje ✦
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-icon">🌿</div>
+          <div class="footer-logo-text">
+            <div class="name">Propalmac</div>
+            <div class="sub">Agroindustrial S.A.</div>
+          </div>
+        </div>
+        <p>Producción sostenible de aceite de palma. Comprometidos con Colombia, el planeta y las futuras generaciones.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <a href="#about">Quiénes Somos</a>
+        <a href="#about">Historia</a>
+        <a href="#sustainability">Sostenibilidad</a>
+        <a href="#testimonials">Aliados</a>
+        <a href="#">Noticias</a>
+      </div>
+      <div class="footer-col">
+        <h4>Productos</h4>
+        <a href="#products">Aceite CPO</a>
+        <a href="#products">Bioenergía</a>
+        <a href="#products">Servicios</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="#contact">Área Comercial</a>
+        <a href="#contact">Exportaciones</a>
+        <a href="#contact">Proveedores</a>
+        <a href="#contact">Empleo</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">©️ 2014 Propalmac. SAS. — Todos los derechos reservados.</span>
+      <div class="social-row">
+        <a href="#" class="social-btn" title="Facebook">📘</a>
+        <a href="#" class="social-btn" title="Instagram">📸</a>
+        <a href="#" class="social-btn" title="LinkedIn">💼</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ WHATSAPP FLOAT ═══ -->
+<a href="https://wa.me/573001234567?text=Hola%2C%20me%20interesa%20información%20sobre%20Palmera%20Verde"
+   target="_blank" rel="noopener" class="wa-float" title="Escríbenos por WhatsApp">
+  💬
+  <span class="wa-tooltip">¿Hablamos por WhatsApp?</span>
+</a>
+
+<!-- ═══ TOAST ═══ -->
+<div class="toast" id="toast">✅ Mensaje enviado. Le contactaremos pronto.</div>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+  /* ── Navbar scroll ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('solid', window.scrollY > 60);
+  }, { passive: true });
+
+  /* ── Mobile menu ── */
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  /* ── Intersection Observer — reveal ── */
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => revealObs.observe(el));
+
+  /* ── Animated counters ── */
+  const counters = document.querySelectorAll('.stat-val[data-target]');
+  let countersDone = false;
+  const counterObs = new IntersectionObserver((entries) => {
+    if (countersDone) return;
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      countersDone = true;
+      counters.forEach(el => {
+        const target = +el.dataset.target;
+        const suffix = el.dataset.suffix || '';
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            el.textContent = target.toLocaleString() + suffix;
+            clearInterval(timer);
+          } else {
+            el.textContent = Math.floor(current).toLocaleString() + suffix;
+          }
+        }, 16);
+      });
+    });
+  }, { threshold: 0.3 });
+  if (counters.length) counterObs.observe(document.getElementById('stats'));
+
+  /* ── Progress bars ── */
+  const bars = document.querySelectorAll('.bar-fill');
+  const barObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.querySelectorAll('.bar-fill').forEach(bar => {
+        bar.style.width = bar.dataset.width + '%';
+      });
+    });
+  }, { threshold: 0.3 });
+  const sustSection = document.getElementById('sustainability');
+  if (sustSection) barObs.observe(sustSection);
+
+  /* ── Fallback: trigger bars when visible ── */
+  const barRevObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        bars.forEach(bar => { bar.style.width = bar.dataset.width + '%'; });
+      }
+    });
+  }, { threshold: 0.2 });
+  bars.forEach(b => barRevObs.observe(b));
+
+  /* ── Form submit ── */
+  function submitForm() {
+    const inputs = document.querySelectorAll('#contact .form-control');
+    let valid = true;
+    inputs.forEach(inp => {
+      if (inp.required && !inp.value.trim()) { inp.style.borderColor = '#e05'; valid = false; }
+      else inp.style.borderColor = '';
+    });
+    if (!valid) return;
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4000);
+    inputs.forEach(inp => { inp.value = ''; });
+  }
+
+  /* ── Smooth anchor scroll with offset ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id === '#') return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY - 70;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+
+  /* ── Active nav link highlight ── */
+  const sections = document.querySelectorAll('section[id], footer');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--gold-l)'
+        : 'rgba(255,255,255,.78)';
+    });
+  }, { passive: true });
+</script>
+</body>
+</html>
